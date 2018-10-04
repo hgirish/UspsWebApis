@@ -1,8 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using UspsWebApis.Models.RateResponse;
 
 namespace UspsWebApis.Controllers
 {
@@ -10,17 +15,32 @@ namespace UspsWebApis.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly IHostingEnvironment hostingEnvironment;
+
+        public ValuesController(IHostingEnvironment hostingEnvironment)
+        {
+            this.hostingEnvironment = hostingEnvironment;
+        }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            var path = hostingEnvironment.WebRootPath;
+            var xmlFile = Path.Combine(path, "response.xml");
+            var content = System.IO.File.ReadAllText(xmlFile);
+            XmlSerializer deserializer = new XmlSerializer(typeof(IntlRateV2Response));
+            var ms = new MemoryStream(Encoding.UTF8.GetBytes(content));
+            var responseJson = deserializer.Deserialize(ms);
+            return Ok(responseJson);
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
+            //XmlSerializer deserializer = new XmlSerializer(typeof(IntlRateV2Response));
+            //var ms = new MemoryStream(Encoding.UTF8.GetBytes(content));
+            //var responseJson = deserializer.Deserialize(ms);
             return "value";
         }
 
