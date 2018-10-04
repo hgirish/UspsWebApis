@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UspsWebApis", "UspsWebApis\UspsWebApis.csproj", "{375AF30A-4B6A-4334-B3FD-1CBA63D1FA4F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{375AF30A-4B6A-4334-B3FD-1CBA63D1FA4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{375AF30A-4B6A-4334-B3FD-1CBA63D1FA4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{375AF30A-4B6A-4334-B3FD-1CBA63D1FA4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{375AF30A-4B6A-4334-B3FD-1CBA63D1FA4F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {82EFCF58-8E98-4E06-8837-C48227030E4F}
+	EndGlobalSection
+EndGlobal
