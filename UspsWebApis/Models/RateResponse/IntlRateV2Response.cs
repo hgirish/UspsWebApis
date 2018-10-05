@@ -10,5 +10,6 @@ namespace UspsWebApis.Models.RateResponse
     {
         
         public ResponsePackage Package { get; set; }
+        public Error Error { get; set; }
     }
 }

@@ -85,10 +85,20 @@ namespace UspsWebApis.Controllers
             //XmlSerializer deserializer = new XmlSerializer(typeof(IntlRateV2Response));
             //var ms = new MemoryStream(Encoding.UTF8.GetBytes(content));
             //var responseJson = deserializer.Deserialize(ms);
-            XmlSerializer deserializer = new XmlSerializer(typeof(IntlRateV2Response));
-            var ms = new MemoryStream(Encoding.UTF8.GetBytes(content));
-            IntlRateV2Response responseJson = (IntlRateV2Response)deserializer.Deserialize(ms);
-            return Ok(responseJson);
+            try
+            {
+                XmlSerializer deserializer = new XmlSerializer(typeof(IntlRateV2Response));
+                var ms = new MemoryStream(Encoding.UTF8.GetBytes(content));
+                IntlRateV2Response responseJson = (IntlRateV2Response)deserializer.Deserialize(ms);
+                return Ok(responseJson);
+            }
+            catch (Exception ex)
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(Error));
+                var ms = new MemoryStream(Encoding.UTF8.GetBytes(content));
+                Error error = (Error)serializer.Deserialize(ms);
+                return NotFound(error);
+            }
         }
     }
 }

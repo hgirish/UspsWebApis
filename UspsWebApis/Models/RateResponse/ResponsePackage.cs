@@ -26,5 +26,6 @@ namespace UspsWebApis.Models.RateResponse
         public Service Service { get; set; }
         [XmlAttribute("ID")]
         public string PackageId { get; set; }
+        public Error Error { get; set; }
     }
 }
