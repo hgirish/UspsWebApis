@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using UspsWebApis.Models.RateResponse;
 
 namespace UspsWebApis.Controllers
@@ -26,11 +27,12 @@ namespace UspsWebApis.Controllers
         public IActionResult Get()
         {
             var path = hostingEnvironment.WebRootPath;
-            var xmlFile = Path.Combine(path, "response.xml");
+            var xmlFile = Path.Combine(path, "responsetrim.xml");
             var content = System.IO.File.ReadAllText(xmlFile);
             XmlSerializer deserializer = new XmlSerializer(typeof(IntlRateV2Response));
             var ms = new MemoryStream(Encoding.UTF8.GetBytes(content));
-            var responseJson = deserializer.Deserialize(ms);
+            IntlRateV2Response responseJson =(IntlRateV2Response) deserializer.Deserialize(ms);
+          //  JsonConvert.DeserializeObject<IntlRateV2Response>(content);
             return Ok(responseJson);
         }
 

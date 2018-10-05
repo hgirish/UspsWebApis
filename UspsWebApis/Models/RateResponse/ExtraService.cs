@@ -1,5 +1,8 @@
-﻿namespace UspsWebApis.Models.RateResponse
+﻿using System;
+
+namespace UspsWebApis.Models.RateResponse
 {
+    [Serializable]
     public class ExtraService
     {
         public string ServiceID { get; set; }

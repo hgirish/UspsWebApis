@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace UspsWebApis.Models.RateResponse
 {
-
+    [Serializable]
     public class IntlRateV2Response
     {
         

@@ -1,5 +1,10 @@
-﻿namespace UspsWebApis.Models.RateResponse
+﻿using System;
+using System.Collections.Generic;
+using System.Xml.Serialization;
+
+namespace UspsWebApis.Models.RateResponse
 {
+    [Serializable]
     public class Service
     {
         public string Pounds { get; set; }
@@ -19,6 +24,7 @@
         public string SvcDescription { get; set; }
         public string MaxDimensions { get; set; }
         public string MaxWeight { get; set; }
+        [XmlAttribute("ID")]
         public string _ID { get; set; }
     }
 }

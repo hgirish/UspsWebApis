@@ -1,7 +1,12 @@
-﻿namespace UspsWebApis.Models.RateResponse
+﻿using System;
+using System.Collections.Generic;
+using System.Xml.Serialization;
+
+namespace UspsWebApis.Models.RateResponse
 {
+    [Serializable]
     public class ExtraServices
-    {
-        public object ExtraService { get; set; }
+    {[XmlArray][XmlArrayItem(typeof(ExtraService))]
+        public List<ExtraService> ExtraService { get; set; }
     }
 }
