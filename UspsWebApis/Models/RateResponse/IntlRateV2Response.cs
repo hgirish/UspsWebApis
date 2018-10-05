@@ -9,6 +9,6 @@ namespace UspsWebApis.Models.RateResponse
     public class IntlRateV2Response
     {
         
-        public Package Package { get; set; }
+        public ResponsePackage Package { get; set; }
     }
 }

@@ -1,13 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace UspsWebApis.Models
+namespace UspsWebApis.Models.IntlRateRequest
 {
 
-    public class Package
+    public class IntlRequestPackage
     {
         public decimal? Pounds { get; set; } = 0;
         public decimal? Ounces { get; set; } = 0;

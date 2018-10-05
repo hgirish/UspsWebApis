@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace UspsWebApis.Models.RateResponse
 {
     [Serializable]
-    public class Package
+    public class ResponsePackage
     {
         [JsonIgnore]
         public string Prohibitions { get; set; }

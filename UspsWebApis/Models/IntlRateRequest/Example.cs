@@ -1,4 +1,4 @@
-﻿namespace UspsWebApis.Models
+﻿namespace UspsWebApis.Models.IntlRateRequest
 {
     public class Example
     {

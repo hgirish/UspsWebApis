@@ -7,9 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UspsWebApis.Models;
+using UspsWebApis.Models.IntlRateRequest;
 using UspsWebApis.Models.RateResponse;
 
 namespace UspsWebApis.Controllers
@@ -18,12 +20,20 @@ namespace UspsWebApis.Controllers
     [ApiController]
     public class IntlRateController : ControllerBase
     {
-        public async Task<IActionResult> GetAsync()
+        private readonly IHostingEnvironment _hostingEnvironment;
+
+        public IntlRateController(IHostingEnvironment hostingEnvironment)
         {
-            Models.Package package = new Models.Package
+            _hostingEnvironment = hostingEnvironment;
+        }
+        //[HttpGet("{country}")]
+        public async Task<IActionResult> GetAsync([FromQuery]IntlRequestPackage model)
+        {
+            //return Ok(model);
+            IntlRequestPackage package = new Models.IntlRateRequest.IntlRequestPackage
             {
                // AcceptanceDateTime = DateTime.UtcNow.AddDays(1),
-                Country = "Canada",
+                Country = model.Country,
                 OriginZip = "90001",
                 Ounces = 15.0m,
                 PackageId = "1",
@@ -34,8 +44,14 @@ namespace UspsWebApis.Controllers
                 Length = "15",
                 Height = "16",
                 Girth = "15",
+                
 
             };
+            if (!string.IsNullOrEmpty(model.DestinationPostalCode))
+            {
+                package.DestinationPostalCode = model.DestinationPostalCode;
+                package.AcceptanceDateTime = DateTime.UtcNow.AddDays(1);
+            }
             IntlRateV2Request intlRateV2Request = new IntlRateV2Request
             {
                 Package = package
@@ -53,6 +69,7 @@ namespace UspsWebApis.Controllers
                     xml = sww.ToString();
                 }
             }
+
             string uspsUrl = "http://production.shippingapis.com/ShippingAPI.dll";
             var formData = new FormUrlEncodedContent(new[]
             {
@@ -62,7 +79,9 @@ namespace UspsWebApis.Controllers
             HttpClient httpClient = new HttpClient();
             var response = await httpClient.PostAsync(uspsUrl, formData);
             var content = await  response.Content.ReadAsStringAsync();
-            System.IO.File.WriteAllText("response.xml", content);
+            var webRootPath = _hostingEnvironment.WebRootPath;
+            var responseXmlFile = Path.Combine(webRootPath, "response.xml");
+            System.IO.File.WriteAllText(responseXmlFile, content);
             //XmlSerializer deserializer = new XmlSerializer(typeof(IntlRateV2Response));
             //var ms = new MemoryStream(Encoding.UTF8.GetBytes(content));
             //var responseJson = deserializer.Deserialize(ms);
