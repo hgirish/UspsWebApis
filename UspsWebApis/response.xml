@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<IntlRateV2Response><Package ID="1"><Error><Number>-2147219040</Number><Source>;IntlRateV2.ProcessRequest</Source><Description>AcceptanceDateTime is required when DestinationPostalCode is populated.</Description><HelpFile/><HelpContext/></Error></Package></IntlRateV2Response>
