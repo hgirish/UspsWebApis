@@ -262,3 +262,5 @@ __pycache__/
 appsettings.Development.json
 /UspsWebApis/wwwroot/request.xml
 /UspsWebApis/wwwroot/response.xml
+request.xml
+response.xml

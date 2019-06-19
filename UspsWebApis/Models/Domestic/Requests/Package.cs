@@ -8,6 +8,8 @@ namespace UspsWebApis.Models.Domestic.Requests
     [Serializable]
     public class Package
     {
+      
+
         [XmlAttribute("ID")]
         public string PackageId { get; set; }
         public string Service { get; set; }
@@ -19,7 +21,6 @@ namespace UspsWebApis.Models.Domestic.Requests
         public string Container { get; set; }
         public string Size { get; set; }
         public string Machinable { get; set; }
-        
         public string Width { get; set; }
         public string Length { get; set; }
         public string Height { get; set; }
@@ -29,7 +30,7 @@ namespace UspsWebApis.Models.Domestic.Requests
         public string DropOffTime { get; set; }
         public string ShipDate { get; set; }
         public string RatePriceType { get; set; }
-        public string RatePaymentType { get; set; }
+        public string RatePaymentType { get; set; }    
     }
-
+  
 }
