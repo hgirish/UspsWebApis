@@ -23,7 +23,7 @@ namespace UspsWebApis.Models.AddressValidation.Responses
         public string Zip4 { get; set; }
         public string DeliveryPoint { get; set; }
         public string CarrierRoute { get; set; }
-        public string Error { get; set; }
+        public Error Error { get; set; }
         public string Footnotes { get; set; }
         public string DPVConfirmation { get; set; }
         public string DPVCMRA { get; set; }
