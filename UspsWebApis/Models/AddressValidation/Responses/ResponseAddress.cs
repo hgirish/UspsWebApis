@@ -31,6 +31,8 @@ namespace UspsWebApis.Models.AddressValidation.Responses
         public string Business { get; set; }
         public string CentralDeliveryPoint { get; set; }
         public string Vacant { get; set; }
+        public string ReturnText { get; set; }
+      
 
 
     }
